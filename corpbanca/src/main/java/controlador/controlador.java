@@ -11,7 +11,7 @@ import modelo.simulador;
  * @author Guru
  */
 public class controlador {
-    public simulador Simular = new simulador();
+    private simulador Simular = new simulador();
     public boolean s_simular(String nombre,String rut,String monto,String cuotas,String fecha){
         return true;
     }
