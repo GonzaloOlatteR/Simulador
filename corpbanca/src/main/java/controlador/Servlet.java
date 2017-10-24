@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.simulador;
 
 /**
  *
@@ -30,25 +31,21 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        controlador sim = new controlador();
+        controlador sim;
+        simulador simu = new simulador(); 
+        int[] a;
         if (request.getParameter("Simular") != null) {
             try{ 
-                
-           
             String Nom = request.getParameter("nombre");    
             String Rut = request.getParameter("rut");
             String Mon = request.getParameter("monto");
             String Cuo = request.getParameter("cuota");
-            String Dat = request.getParameter("date");            
-            request.getRequestDispatcher("simulacion.html").forward(request, response);
-            /*
-            if (sim.s_simular(Nom,Rut,Mon, Cuo, Dat)==true){
-                    request.getRequestDispatcher("simulacion.html").forward(request, response);   
-                }
-                else{
-                    request.getRequestDispatcher("error.html").forward(request, response);
-                }
-            */            
+            //String Dat = request.getParameter("date");            
+            a=simu.simularCredito(Nom,Rut,Mon,Cuo);
+            sim=new controlador(a);
+            request.getRequestDispatcher("simulacion.jsp").forward(request, response);
+            //request.getRequestDispatcher("error.html").forward(request, response);
+                       
             }           
             catch(Exception ex){} 
             }

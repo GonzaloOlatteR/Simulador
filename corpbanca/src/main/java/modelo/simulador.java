@@ -124,7 +124,7 @@ public class simulador {
         }
     } 
     
-    public boolean simularCredito(String nombre,String rut,String monto,String cuotas,String fecha){
+    public int[] simularCredito(String nombre,String rut,String monto,String cuotas){
         int montoE=Integer.parseInt(monto);
         int cuotasE=Integer.parseInt(cuotas);
         float interes= (float)(1.85/100);
@@ -132,7 +132,8 @@ public class simulador {
         double abajo=pow(interesS,cuotasE);
         int valorcuota=(int)(montoE*(1-(1/abajo))/interes);
         int totalcredito=(int)valorcuota*cuotasE;
-    return true;
+        int[] a={montoE,cuotasE,valorcuota,totalcredito};
+        return a;
 }
     
 }
